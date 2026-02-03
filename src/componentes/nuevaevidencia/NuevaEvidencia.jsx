@@ -20,6 +20,7 @@ function NuevaEvidencia() {
   return (
     <>
       <SelectorTareaRA onSelect={seleccionarTarea} />
+      <hr></hr>
       <NuevaEvidenciaForm manejarFormulario={manejarFormulario} tarea={tarea} />
 
       <pre>{JSON.stringify(evidencia, null, 2)}</pre>
