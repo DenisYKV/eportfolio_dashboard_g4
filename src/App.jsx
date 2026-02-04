@@ -5,8 +5,12 @@ import UserContext from './context/UserContext'
 import Cabecera from './componentes/cabecera/Cabecera'
 import Roles from './componentes/roles/Roles'
 import Main from './componentes/main/Main'
+import NuevaEvidencia from './componentes/nuevaevidencia/NuevaEvidencia'
+import { Route, Routes } from 'react-router-dom'
+import FuncionalidadEstudiante from './componentes/paginas/FuncionalidadEstudiante'
+import FuncionalidadDocente from './componentes/paginas/FuncionalidadDocente'
 function App() {
-  let usuario = "Denis"
+  let usuario = "Victor"
   let token = "esta es la variable token con CONTEXTO"
   let menu = "este es el menu"
 
@@ -24,14 +28,17 @@ function App() {
           <UserContext.Provider value={user}>
             <div className="row">
               <Roles></Roles>
-              <Main menu={menu}></Main>
+               <Routes>
+                <Route path='/' element={<Main menu={menu}></Main>}/>
+                <Route path='/funcionalidadestuiante/:moduloId' element={<FuncionalidadEstudiante></FuncionalidadEstudiante>}></Route>
+                <Route path='/funcionalidaddocente/:moduloId' element={<FuncionalidadDocente></FuncionalidadDocente>}></Route>
+              </Routes> 
             </div >
           </UserContext.Provider>
 
         </div >
 
       </TokenContext.Provider>
-      
     </>
   )
 }

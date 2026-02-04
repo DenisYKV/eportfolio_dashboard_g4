@@ -3,6 +3,7 @@ import UserContext from "../../context/UserContext";
 import { useEffect, useContext } from "react"
 import { Button, TextField } from "@mui/material";
 
+
 function NuevaEvidenciaForm(props) {
 
     const usuario = useContext(UserContext)
@@ -58,9 +59,8 @@ function NuevaEvidenciaForm(props) {
         <form id="formulario" onSubmit={manejarFormulario}>
 
 
-
-         {/*    <label htmlFor={EVIDENCIA.url}>url: </label>
-            <input id={EVIDENCIA.url} type="text"
+            {/*<label htmlFor={EVIDENCIA.url}>url: </label>  
+           <input id={EVIDENCIA.url} type="text"
                 {...register(EVIDENCIA.url, {
                     required: { value: true, message: "La url es obligatoria" },
                     pattern: {
@@ -68,11 +68,10 @@ function NuevaEvidenciaForm(props) {
                         message: "El formato de la URL no es válido",
                     },
                     validate: validarURL,
-                })}>
+                })}
 
-                    
-                </input> <br /><span>{errors.url?.message}</span> */}
-
+            ></input> <br /><span>{errors.url?.message}</span> */}
+            <br />
             <TextField
                 label='URL'
                 variant="outlined"
@@ -84,11 +83,11 @@ function NuevaEvidenciaForm(props) {
                         message: "El formato de la URL no es válido",
                     },
                     validate: validarURL,
-                })}/>
-                <br/>
-                <br/>
+                })} />
+            <br />
+            <br />
 
-            {/* <label htmlFor={EVIDENCIA.descripcion}>Observaciones: </label>
+            {/*  <label htmlFor={EVIDENCIA.descripcion}>Observaciones: </label>
             <input id={EVIDENCIA.descripcion} type="textfield"
                 {...register(EVIDENCIA.descripcion,
                     {
@@ -99,7 +98,8 @@ function NuevaEvidenciaForm(props) {
                     }
 
                 )}
-            ></input> <br /><span>{errors.descripcion?.message}</span><br /> */}
+            ></input> <br /><span>{errors.descripcion?.message}</span> */}<br />
+
 
             <TextField
                 label='Descripción'
@@ -112,10 +112,9 @@ function NuevaEvidenciaForm(props) {
                             value: true,
                             message: "La descripcion es obligatoria"
                         }
-                    })}/>
-<br />
+                    })} />
+            <br />
 
-            
             <Button type="submit" variant="contained">Añadir Evidencia</Button>
         </form>
     )

@@ -1,8 +1,7 @@
 import { useContext } from "react"
 import "./Main.css"
 import UserContext from "../../context/UserContext"
-import NuevaEvidencia from '../nuevaevidencia/NuevaEvidencia'
-
+import NuevaEvidencia from "../nuevaevidencia/NuevaEvidencia"
 
 function Main(props) {
     const usuario=useContext(UserContext)
@@ -11,10 +10,9 @@ function Main(props) {
             <p>main {props.menu}</p>
             <br />
             <p>usuario contexto: {usuario}</p>
-
-            <NuevaEvidencia></NuevaEvidencia>
+            
+      <NuevaEvidencia></NuevaEvidencia>
         </main>
-
     )
 }
 export default Main
