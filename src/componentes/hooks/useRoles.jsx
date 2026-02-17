@@ -1,18 +1,27 @@
-import { useContext, useEffect, useState } from "react"
-import roles from "../../mocks/mock-roles"
-import UserContext from "../../context/UserContext"
-
+import { useContext, useEffect, useState } from "react";
+import UserContext from "../../context/UserContext";
+import getRolesPorUsuario from "../../servicios/getRolesPorUsuario";
 
 function useRoles() {
-    const usuario = useContext(UserContext)
-    const[buscando,setBuscando]=useState(false)
-    const[lista,setLista]=useState([])
+  const usuario = useContext(UserContext);
 
-    useEffect(()=>{
-        setLista(roles[usuario]?.roles ?? [])
-    }, [usuario])
+  const [lista, setLista] = useState([]);
+  const [cargando, setCargando] = useState(false);
 
-    return{buscando,lista }
+  useEffect(() => {
+    if (!usuario) {
+      setLista([]);
+      return;
+    }
 
+    setCargando(true);
+    getRolesPorUsuario(usuario).then((roles) => {
+      setLista(roles);
+      setCargando(false);
+    });
+  }, [usuario]);
+
+  return { lista, cargando };
 }
-export default useRoles
+
+export default useRoles;

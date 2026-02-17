@@ -2,11 +2,14 @@ import { useForm } from "react-hook-form";
 import UserContext from "../../context/UserContext";
 import { useEffect, useContext } from "react"
 import { Button, TextField } from "@mui/material";
+import useNuevaEvidencia from "../hooks/useNuevaEvidencia";
 
 
 function NuevaEvidenciaForm(props) {
 
     const usuario = useContext(UserContext)
+    const { insertarEvidencia, cargando } = useNuevaEvidencia();
+
 
     const EVIDENCIA = {
         tarea_id: props.tarea?.id ?? null,
@@ -38,10 +41,18 @@ function NuevaEvidenciaForm(props) {
 
     }, [props.tarea, setValue]);
     const manejarFormulario = handleSubmit((evidencia) => {
-        props.manejarFormulario(evidencia)
-        console.log("evidencia insertada", evidencia);
-    })
 
+        const nuevaEvidencia = {
+            ...evidencia,
+            estudiante_id: usuario,
+            estado_validacion: "pendiente"
+        };
+
+        insertarEvidencia(nuevaEvidencia).then((creada) => {
+            console.log("Evidencia creada:", creada);
+        });
+
+    });
 
     function validarURL(url) {
         console.log("validando URL");
@@ -69,7 +80,6 @@ function NuevaEvidenciaForm(props) {
                     },
                     validate: validarURL,
                 })}
-
             ></input> <br /><span>{errors.url?.message}</span> */}
             <br />
             <TextField

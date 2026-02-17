@@ -5,8 +5,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import tareasRA from '../../mocks/mock-tareasRA.js'
+import useTareasPorRA from "../hooks/useTareasPorRA";
 
 function SelectorTareaRA({onSelect} ) {
+    const { lista: tareas, cargando } = useTareasPorRA();
     const [seleccionada, setTareaR] = React.useState('');
 
     const handleChange = (event) => {
@@ -41,6 +43,7 @@ function SelectorTareaRA({onSelect} ) {
                         onChange={handleChange}
                     >
                         {tareasRA.lista.map(manejarSelector)}
+                        {/* {tareas.map()} */}
                     </Select>
                 </FormControl>
             </Box>

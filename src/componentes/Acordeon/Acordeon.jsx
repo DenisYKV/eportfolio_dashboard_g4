@@ -3,9 +3,9 @@ import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import useRoles from '../hooks/useRoles';
-import useMisModulosImpartidos from '../hooks/useMisModulosImpartidos';
-import useMisModulosMatriculados from '../hooks/useMisModulosMatriculados';
+import useRoles from '../hooks/useRolesMock';
+import useMisModulosImpartidos from '../hooks/useMisModulosImpartidosMock';
+import useMisModulosMatriculados from '../hooks/useMisModulosMatriculadosMock';
 import opcionesMenu from '../../mocks/mock-administrador';
 import { Link } from 'react-router-dom';
 
@@ -63,7 +63,7 @@ function Acordeon() {
 
   function generarOpcionesAdministrador(opcion) {
     return (<AccordionDetails key={opcion.nombre}>
-       {opcion.nombre}
+       <Link to="/familiasprofesionales">{opcion.nombre}</Link>
     </AccordionDetails>
 
     )
