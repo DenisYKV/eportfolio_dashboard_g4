@@ -1,33 +1,48 @@
+
+import TokenContext from './context/TokenContext'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import UserContext from './context/UserContext'
+import Cabecera from './componentes/cabecera/Cabecera'
+import Roles from './componentes/roles/Roles'
+import Main from './componentes/main/Main'
+import NuevaEvidencia from './componentes/nuevaevidencia/NuevaEvidencia'
+import { Route, Routes } from 'react-router-dom'
+import FuncionalidadEstudiante from './componentes/paginas/FuncionalidadEstudiante'
+import FuncionalidadDocente from './componentes/paginas/FuncionalidadDocente'
+import PaginaFamiliasProfesionales from "./componentes/paginas/PaginaFamiliasProfesionales";
 
 function App() {
-  const [count, setCount] = useState(0)
+  let usuario = "Victor"
+  let token = "esta es la variable token con CONTEXTO"
+  let menu = "este es el menu"
+
+  const [user, setUser] = useState(usuario)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <TokenContext.Provider value={token}>
+
+        <div className="container-fluid">
+
+          <div className="row">
+           <Cabecera usuario={user}></Cabecera>
+          </div>
+          <UserContext.Provider value={user}>
+            <div className="row">
+              <Roles></Roles>
+               <Routes>
+                
+                <Route path='/' element={<Main menu={menu}></Main>}/>
+                <Route path='/funcionalidadestuiante/:moduloId' element={<FuncionalidadEstudiante></FuncionalidadEstudiante>}></Route>
+                <Route path='/funcionalidaddocente/:moduloId' element={<FuncionalidadDocente></FuncionalidadDocente>}></Route>
+              <Route path="/familiasprofesionales" element={<PaginaFamiliasProfesionales />} />
+              </Routes> 
+            </div >
+          </UserContext.Provider>
+
+        </div >
+
+      </TokenContext.Provider>
     </>
   )
 }
